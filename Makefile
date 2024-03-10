@@ -15,12 +15,7 @@ CONTAINER_RUNTIME=docker
 endif
 CONTAINER_RUNNABLE ?= $(shell $(CONTAINER_RUNTIME) -v > /dev/null 2>&1; echo $$?)
 
-# Use microk8s if installed
-ifeq (,$(shell command -v microk8s 2> /dev/null))
-KUBECTL="kubectl"
-else
-KUBECTL="microk8s kubectl"
-endif
+KUBECTL="/snap/bin/microk8s.kubectl"
 
 REGISTRY ?= docker.io/nephio
 PROJECT ?= free5gc-operator
